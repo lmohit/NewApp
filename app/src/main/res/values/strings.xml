@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_name">Name</string>
+    <string name="prompt_address">Address (Optional)</string>
+    <string name="prompt_phoneNumber">Phone Number</string>
+    <string name="enter_registration_details">Enter Registration Details</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in </string>
+    <string name="action_register">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="user_cred_pref">User Cred Pref</string>
+    <string name="improper_credentials">Please enter proper credentials</string>
+    <string name="missing_fields">Please fill out missing fields</string>
+    <string name="incorrect_phone_number">Incorrect Phone Number</string>
+    <string name="improper_password">Please Enter proper password</string>
 </resources>
