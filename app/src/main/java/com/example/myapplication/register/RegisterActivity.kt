@@ -1,6 +1,7 @@
 package com.example.myapplication.register
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.myapplication.Constants.Companion.SIGNED_IN
 import com.example.myapplication.Constants.Companion.USERNAME
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityRegisterBinding
+import com.example.myapplication.user.UserSelectionActivity
 
 class RegisterActivity : FragmentActivity() {
 
@@ -36,6 +38,7 @@ class RegisterActivity : FragmentActivity() {
                 if (isValid) {
                     binding.validateCredentials.visibility = View.GONE
                     insertToSharedPreferences()
+                    navigateToUserSelectionActivity()
                 } else {
                     binding.validateCredentials.visibility = View.VISIBLE
                 }
@@ -59,6 +62,12 @@ class RegisterActivity : FragmentActivity() {
             )
         }
 
+    }
+
+    private fun navigateToUserSelectionActivity() {
+        // TODO : Have to use navigation component
+        val intent = Intent(this, UserSelectionActivity::class.java)
+        startActivity(intent)
     }
 
     private fun insertToSharedPreferences() {

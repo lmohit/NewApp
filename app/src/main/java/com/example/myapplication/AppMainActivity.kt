@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.myapplication.Constants.Companion.SIGNED_IN
 import com.example.myapplication.Constants.Companion.USERNAME
-import com.example.myapplication.User.UserSelectionActivity
+import com.example.myapplication.user.UserSelectionActivity
 import com.example.myapplication.login.LoginActivity
 import com.example.myapplication.login.LoginState
 

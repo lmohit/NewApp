@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.myapplication.R
-import com.example.myapplication.User.UserSelectionActivity
+import com.example.myapplication.user.UserSelectionActivity
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.example.myapplication.register.RegisterActivity
 

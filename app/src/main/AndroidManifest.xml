@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".User.UserSelectionActivity"></activity>
+        <activity android:name=".user.UserSelectionActivity"></activity>
         <activity
             android:name=".register.RegisterActivity"
             android:enabled="true"
