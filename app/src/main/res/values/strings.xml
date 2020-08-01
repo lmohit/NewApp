@@ -21,4 +21,11 @@
     <string name="missing_fields">Please fill out missing fields</string>
     <string name="incorrect_phone_number">Incorrect Phone Number</string>
     <string name="improper_password">Please Enter proper password</string>
+
+    <!-- Customer -->
+    <string name="customer_text">CUSTOMER</string>
+    <string name="user_selection">CHOOSE USER TYPE</string>
+
+    <!-- Vendor -->
+    <string name="vendor_text">VENDOR</string>
 </resources>
