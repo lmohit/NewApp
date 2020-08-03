@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import com.amplifyframework.core.Amplify
 import com.example.myapplication.Constants.Companion.SIGNED_IN
 import com.example.myapplication.Constants.Companion.USERNAME
 import com.example.myapplication.user.UserSelectionActivity
@@ -19,6 +20,7 @@ class AppMainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate")
+        Amplify.configure(applicationContext)
         loginIntent = when (checkUserSignInStatus()) {
             LoginState.NEW_USER, LoginState.LOGGED_OUT -> {
                 Intent(applicationContext, LoginActivity::class.java)
