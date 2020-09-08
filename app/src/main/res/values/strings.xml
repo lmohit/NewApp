@@ -3,7 +3,7 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_username">Username</string>
-    <string name="prompt_name">Name</string>
+    <string name="prompt_email">Email</string>
     <string name="prompt_address">Address (Optional)</string>
     <string name="prompt_phoneNumber">Phone Number</string>
     <string name="enter_registration_details">Enter Registration Details</string>

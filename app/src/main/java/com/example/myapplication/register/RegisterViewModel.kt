@@ -1,13 +1,14 @@
 package com.example.myapplication.register
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.myapplication.R
-import java.util.regex.Pattern
+    import android.util.Log
+    import androidx.lifecycle.LiveData
+    import androidx.lifecycle.MutableLiveData
+    import androidx.lifecycle.ViewModel
+    import com.example.myapplication.R
+    import com.google.firebase.auth.FirebaseAuth
+    import java.util.regex.Pattern
 
-class RegisterViewModel : ViewModel() {
+    class RegisterViewModel : ViewModel() {
 
     val _isUserDetailsValid = MutableLiveData<Boolean>()
     val isUserDetailsValid: LiveData<Boolean>

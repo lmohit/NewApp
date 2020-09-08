@@ -14,10 +14,9 @@ class UserSelectionActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_user_selection)
-        binding.lifecycleOwner = this
-
-        setClickListeners()
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_user_selection)
+//        binding.lifecycleOwner = this
+//        setClickListeners()
     }
 
     private fun setClickListeners() {

@@ -2,9 +2,11 @@ package com.example.myapplication.register
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -12,9 +14,11 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.myapplication.Constants.Companion.PASSWORD
 import com.example.myapplication.Constants.Companion.SIGNED_IN
 import com.example.myapplication.Constants.Companion.USERNAME
+import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_AUTH
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityRegisterBinding
 import com.example.myapplication.user.UserSelectionActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : FragmentActivity() {
 
@@ -37,8 +41,7 @@ class RegisterActivity : FragmentActivity() {
             isValid -> isValid?.let {
                 if (isValid) {
                     binding.validateCredentials.visibility = View.GONE
-                    insertToSharedPreferences()
-                    navigateToUserSelectionActivity()
+                    insertInFirebase();
                 } else {
                     binding.validateCredentials.visibility = View.VISIBLE
                 }
@@ -52,10 +55,25 @@ class RegisterActivity : FragmentActivity() {
         })
     }
 
+    private fun insertInFirebase() {
+        FIREBASE_AUTH.createUserWithEmailAndPassword(
+            binding.email.text.toString(),
+            binding.password.text.toString()
+        ).addOnCompleteListener(this) {
+            if (it.isSuccessful) {
+                Log.d(TAG, "Inserted User data successfully" + binding.password.text.toString())
+                insertToSharedPreferences()
+                navigateToUserSelectionActivity()
+            } else {
+                Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun setRegisterButtonListener() {
         binding.registerButton.setOnClickListener {
             registerViewModel.validateUserDetails(
-                binding.name.text.toString(),
+                binding.email.text.toString(),
                 binding.username.text.toString(),
                 binding.password.text.toString(),
                 binding.phoneNumber.text.toString()

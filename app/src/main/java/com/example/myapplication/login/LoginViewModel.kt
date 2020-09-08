@@ -11,18 +11,16 @@ class LoginViewModel : ViewModel() {
     val incorrectCredentialsText: LiveData<Int>
         get() = _incorrectCredentialsText
 
-    private val _isCredentialsValid = MutableLiveData<Boolean>()
-    val isCredentialsValid: LiveData<Boolean>
-        get() = _isCredentialsValid
+    private val _isCredentialsEntered = MutableLiveData<Boolean>()
+    val isCredentialsEntered: LiveData<Boolean>
+        get() = _isCredentialsEntered
 
-    fun validateCredentials(userName: String, password: String) {
+    fun isCredentialEntered(userName: String, password: String) {
         if (userName.isEmpty() || password.isEmpty()) {
-            _isCredentialsValid.value = false
+            _isCredentialsEntered.value = false
             _incorrectCredentialsText.value = R.string.missing_fields
             return
         }
-
-        //TODO Checking username and password in server
-        _isCredentialsValid.value = true
+        _isCredentialsEntered.value = true
     }
 }

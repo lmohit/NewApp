@@ -2,15 +2,19 @@ package com.example.myapplication.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_AUTH
 import com.example.myapplication.R
 import com.example.myapplication.user.UserSelectionActivity
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.example.myapplication.register.RegisterActivity
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : FragmentActivity() {
 
@@ -29,8 +33,8 @@ class LoginActivity : FragmentActivity() {
 
     private fun setButtonClickListeners() {
         binding.loginButton.setOnClickListener {
-            loginViewModel.validateCredentials(
-                binding.username.text.toString(),
+            loginViewModel.isCredentialEntered(
+                binding.email.text.toString(),
                 binding.password.text.toString()
             )
         }
@@ -46,18 +50,39 @@ class LoginActivity : FragmentActivity() {
             binding.validateCredentials.text = getString(resId)
         })
 
-        loginViewModel.isCredentialsValid.observe(this, Observer {isValid ->
-            if (isValid) {
-                binding.validateCredentials.visibility = View.GONE
-                navigateToUserSelectionActivity()
+        loginViewModel.isCredentialsEntered.observe(this, Observer {isEntered ->
+            if (isEntered) {
+                validateCredentials();
             } else {
                 binding.validateCredentials.visibility = View.VISIBLE
             }
         })
     }
 
+    private fun validateCredentials() {
+        FIREBASE_AUTH.signInWithEmailAndPassword(
+            binding.email.text.toString(),
+            binding.password.text.toString()
+        ).addOnCompleteListener(this) {
+            if (it.isSuccessful) {
+                Log.d(TAG, "Login Successful");
+                navigateToUserSelectionActivity()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Incorrect Credentials Entered",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
     private fun navigateToUserSelectionActivity() {
         val intent = Intent(this, UserSelectionActivity::class.java)
         startActivity(intent)
+    }
+
+    companion object {
+        private const val TAG = "LoginActivity"
     }
 }
