@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_AUTH
+import com.example.myapplication.NewCorpApplication.Companion.LOGIN_STATE
 import com.example.myapplication.R
 import com.example.myapplication.user.UserSelectionActivity
 import com.example.myapplication.databinding.ActivityLoginBinding
@@ -65,7 +66,8 @@ class LoginActivity : FragmentActivity() {
             binding.password.text.toString()
         ).addOnCompleteListener(this) {
             if (it.isSuccessful) {
-                Log.d(TAG, "Login Successful");
+                Log.d(TAG, "Login Successful")
+                LOGIN_STATE = LoginState.LOGGED_IN
                 navigateToUserSelectionActivity()
             } else {
                 Toast.makeText(

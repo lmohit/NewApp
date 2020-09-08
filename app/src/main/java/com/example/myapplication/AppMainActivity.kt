@@ -5,12 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.amplifyframework.core.Amplify
 import com.example.myapplication.Constants.Companion.SIGNED_IN
-import com.example.myapplication.Constants.Companion.USERNAME
-import com.example.myapplication.user.UserSelectionActivity
 import com.example.myapplication.login.LoginActivity
 import com.example.myapplication.login.LoginState
+import com.example.myapplication.user.UserSelectionActivity
 
 class AppMainActivity : Activity() {
 
@@ -20,9 +18,8 @@ class AppMainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate")
-        Amplify.configure(applicationContext)
         loginIntent = when (checkUserSignInStatus()) {
-            LoginState.NEW_USER, LoginState.LOGGED_OUT -> {
+            LoginState.LOGGED_OUT -> {
                 Intent(applicationContext, LoginActivity::class.java)
             }
             LoginState.LOGGED_IN -> {
@@ -33,14 +30,8 @@ class AppMainActivity : Activity() {
     }
 
     private fun checkUserSignInStatus(): LoginState {
-        val sharedPref =
-            getSharedPreferences(getString(R.string.user_cred_pref), Context.MODE_PRIVATE)
-        val userName = sharedPref.getString(USERNAME, "")
-        val signInState = sharedPref.getBoolean(SIGNED_IN, false)
-        userName?.let {
-            if (it.isEmpty()) return LoginState.NEW_USER
-        }
-        return when (signInState) {
+        val sharedPref = getSharedPreferences(getString(R.string.user_cred_pref), Context.MODE_PRIVATE)
+        return when (sharedPref.getBoolean(SIGNED_IN, false)) {
             true -> LoginState.LOGGED_IN
             false -> LoginState.LOGGED_OUT
         }
