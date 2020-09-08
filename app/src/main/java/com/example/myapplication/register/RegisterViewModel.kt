@@ -1,15 +1,16 @@
 package com.example.myapplication.register
 
-    import android.util.Log
-    import androidx.lifecycle.LiveData
-    import androidx.lifecycle.MutableLiveData
-    import androidx.lifecycle.ViewModel
-    import com.example.myapplication.R
-    import com.google.firebase.auth.FirebaseAuth
-    import java.util.regex.Pattern
+import android.util.Log
+import androidx.lifecycle.*
+import com.example.myapplication.R
+import com.example.myapplication.user.User
+import com.example.myapplication.user.UserCred
+import com.example.myapplication.user.UserType
+import java.util.regex.Pattern
 
-    class RegisterViewModel : ViewModel() {
+class RegisterViewModel : ViewModel() {
 
+    private var registerRepo: RegisterRepo
     val _isUserDetailsValid = MutableLiveData<Boolean>()
     val isUserDetailsValid: LiveData<Boolean>
         get() = _isUserDetailsValid
@@ -20,13 +21,23 @@ package com.example.myapplication.register
 
     init {
         Log.d(TAG, "ViewModel Created")
+        registerRepo = RegisterRepo()
+        initObservers()
+    }
+
+    private fun initObservers() {
+        Transformations.switchMap(registerRepo.isUserDetailsEntered) {
+            _isUserDetailsValid.value = it
+            _isUserDetailsValid
+        }
     }
 
     private fun checkEmptyInformation(
         name: String,
         userName: String,
         password: String,
-        phoneNumber: String) {
+        phoneNumber: String
+    ) {
         if (name.isEmpty() || userName.isEmpty() || password.isEmpty() || phoneNumber.isEmpty()) {
             _isUserDetailsValid.value = false
             _incorrectDetailsText.value = R.string.missing_fields
@@ -40,7 +51,7 @@ package com.example.myapplication.register
         }
     }
 
-    private fun checkValidPassword(password: String)  {
+    private fun checkValidPassword(password: String) {
         val exp = ".*[~!@#\$%\\^&*()\\-_=+\\|\\[{\\]};:'\",<.>/?].*"
         val pattern = Pattern.compile(exp)
         val matcher = pattern.matcher(password)
@@ -50,14 +61,36 @@ package com.example.myapplication.register
         }
     }
 
-    fun validateUserDetails(name: String, userName: String, password: String, phoneNumber: String) {
+    fun validateUserDetails(
+        email: String,
+        userName: String,
+        password: String,
+        phoneNumber: String
+    ) {
         _isUserDetailsValid.value = null
-        checkEmptyInformation(name, userName, password, phoneNumber)
+        checkEmptyInformation(email, userName, password, phoneNumber)
         checkValidPhoneNumber(phoneNumber)
         checkValidPassword(password)
         if (_isUserDetailsValid.value == null) {
+            registerRepo.insertUserDetails(getUserDetails(email, userName, password, phoneNumber))
             _isUserDetailsValid.value = true
         }
+    }
+
+    private fun getUserDetails(
+        email: String,
+        userName: String,
+        password: String,
+        phoneNumber: String
+    ): User {
+        return User(
+            email,
+            phoneNumber,
+            "",
+            UserType.NONE,
+            email,
+            UserCred(userName, password)
+        )
     }
 
     companion object {
