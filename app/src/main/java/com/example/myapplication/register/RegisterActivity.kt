@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_AUTH
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityRegisterBinding
-import com.example.myapplication.user.UserSelectionActivity
+import com.example.myapplication.login.LoginActivity
 
 class RegisterActivity : FragmentActivity() {
 
@@ -55,7 +55,7 @@ class RegisterActivity : FragmentActivity() {
             binding.password.text.toString()
         ).addOnCompleteListener(this) {
             if (it.isSuccessful) {
-                navigateToUserSelectionActivity()
+                navigateToLoginActivity()
             } else {
                 Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
             }
@@ -74,9 +74,8 @@ class RegisterActivity : FragmentActivity() {
 
     }
 
-    private fun navigateToUserSelectionActivity() {
-        // TODO : Have to use navigation component
-        val intent = Intent(this, UserSelectionActivity::class.java)
+    private fun navigateToLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 

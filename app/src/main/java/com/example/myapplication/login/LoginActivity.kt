@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.myapplication.Constants.Companion.EMAIL
 import com.example.myapplication.Constants.Companion.LOGGED_IN
 import com.example.myapplication.Constants.Companion.SHARED_PREFERENCES
 import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_AUTH
@@ -84,6 +85,7 @@ class LoginActivity : FragmentActivity() {
         val prefs = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
         val editor = prefs.edit()
         editor.putBoolean(LOGGED_IN, true)
+        editor.putString(EMAIL, binding.email.text.toString())
         editor.apply()
     }
 

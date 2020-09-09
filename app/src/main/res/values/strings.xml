@@ -21,6 +21,7 @@
     <string name="missing_fields">Please fill out missing fields</string>
     <string name="incorrect_phone_number">Incorrect Phone Number</string>
     <string name="improper_password">Please Enter proper password</string>
+    <string name="logout">Logout</string>
 
     <!-- Customer -->
     <string name="customer_text">CUSTOMER</string>

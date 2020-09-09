@@ -2,25 +2,47 @@ package com.example.myapplication.user
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModelProviders
 import com.example.myapplication.R
+import com.example.myapplication.Utils
+import com.example.myapplication.login.LoginActivity
 
-class UserSelectionActivity : FragmentActivity() {
 
-    private lateinit var userSelectionViewModel: UserSelectionViewModel
+class UserSelectionActivity : AppCompatActivity() {
+
     private lateinit var customerButton: CardView
     private lateinit var vendorButton: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView( R.layout.activity_user_selection)
-        userSelectionViewModel = ViewModelProviders.of(this)
-            .get(UserSelectionViewModel::class.java)
         customerButton = findViewById(R.id.customerButton)
         vendorButton = findViewById(R.id.vendorButton)
         setClickListeners()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        Log.d(TAG, "onCreateOptionsMenu")
+        menuInflater.inflate(R.menu.overflow_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (R.id.logout == item.itemId) {
+            Utils.logoutUser(this)
+            navigateToLoginActivity()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun navigateToLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setClickListeners() {
@@ -33,5 +55,9 @@ class UserSelectionActivity : FragmentActivity() {
             val intent = Intent(applicationContext, VendorActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    companion object {
+        private const val TAG = "UserSelectionActivity"
     }
 }
