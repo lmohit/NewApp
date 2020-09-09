@@ -1,5 +1,6 @@
 package com.example.myapplication.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,13 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.myapplication.Constants.Companion.LOGGED_IN
+import com.example.myapplication.Constants.Companion.SHARED_PREFERENCES
 import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_AUTH
-import com.example.myapplication.NewCorpApplication.Companion.LOGIN_STATE
 import com.example.myapplication.R
-import com.example.myapplication.user.UserSelectionActivity
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.example.myapplication.register.RegisterActivity
-import kotlinx.android.synthetic.main.activity_login.*
+import com.example.myapplication.user.UserSelectionActivity
 
 class LoginActivity : FragmentActivity() {
 
@@ -67,7 +68,7 @@ class LoginActivity : FragmentActivity() {
         ).addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 Log.d(TAG, "Login Successful")
-                LOGIN_STATE = LoginState.LOGGED_IN
+                insertToSharedPreferences()
                 navigateToUserSelectionActivity()
             } else {
                 Toast.makeText(
@@ -77,6 +78,13 @@ class LoginActivity : FragmentActivity() {
                 ).show()
             }
         }
+    }
+
+    private fun insertToSharedPreferences() {
+        val prefs = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putBoolean(LOGGED_IN, true)
+        editor.apply()
     }
 
     private fun navigateToUserSelectionActivity() {
