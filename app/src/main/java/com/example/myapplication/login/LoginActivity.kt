@@ -71,6 +71,7 @@ class LoginActivity : FragmentActivity() {
                 Log.d(TAG, "Login Successful")
                 insertToSharedPreferences()
                 navigateToUserSelectionActivity()
+                finish()
             } else {
                 Toast.makeText(
                     this,

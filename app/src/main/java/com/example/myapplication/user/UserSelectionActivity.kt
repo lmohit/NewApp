@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.myapplication.R
 import com.example.myapplication.Utils
-import com.example.myapplication.login.LoginActivity
+import com.example.myapplication.user.customer.CustomerActivity
 
 
 class UserSelectionActivity : AppCompatActivity() {
@@ -34,15 +34,9 @@ class UserSelectionActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (R.id.logout == item.itemId) {
             Utils.logoutUser(this)
-            navigateToLoginActivity()
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun navigateToLoginActivity() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
     }
 
     private fun setClickListeners() {

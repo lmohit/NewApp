@@ -2,8 +2,8 @@
 <layout>
     <data>
         <variable
-            name="vendorViewModel"
-            type="com.example.myapplication.user.vendor.VendorViewModel" />
+            name="customerViewModel"
+            type="com.example.myapplication.user.customer.CustomerViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,15 +18,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/customers"
+                android:id="@+id/vendors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/no_customers"
+                android:text="@string/no_vendors"
                 android:textSize="17dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/customersList"
+                android:id="@+id/vendorsList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp" />

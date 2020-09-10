@@ -18,6 +18,7 @@ class RegisterRepo {
         val dbReference
                 = FIREBASE_DATABASE.getReference(FIREBASE_USER_DATABASE)
         dbReference.child(userDetails.phoneNumber).setValue(userDetails)
+        _isUserDetailsEntered.postValue(true)
     }
 
     companion object {
