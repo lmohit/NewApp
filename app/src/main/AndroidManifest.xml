@@ -2,17 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".user.vendor.VendorActivity"></activity>
-        <activity android:name=".user.vendor.VendorInfoActivity" />
-        <activity android:name=".user.VendorActivity" />
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".user.customer.addvendor.AddVendorActivity"></activity>
+
+        <activity android:name=".user.vendor.VendorActivity" />
         <activity android:name=".user.customer.CustomerActivity" />
+        <activity android:name=".user.vendor.addcustomer.AddCustomerActivity" />
         <activity
             android:name=".user.UserSelectionActivity"
             android:theme="@style/AppTheme"

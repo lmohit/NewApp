@@ -12,11 +12,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.Constants
+import com.example.myapplication.NewCorpApplication
+import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_DATABASE
+import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_USER_DATABASE
 import com.example.myapplication.R
 import com.example.myapplication.Utils
 import com.example.myapplication.databinding.ActivityListVendorsBinding
 import com.example.myapplication.user.User
-import com.example.myapplication.user.vendor.VendorInfoActivity
+import com.example.myapplication.user.customer.addvendor.AddVendorActivity
 
 class CustomerActivity : FragmentActivity(), VendorListAdapter.VendorSelectionListener {
 
@@ -30,11 +34,24 @@ class CustomerActivity : FragmentActivity(), VendorListAdapter.VendorSelectionLi
         customerViewModel = ViewModelProviders.of(this).get(CustomerViewModel::class.java)
         binding.customerViewModel = customerViewModel
         binding.lifecycleOwner = this
-        vendorListAdapter = VendorListAdapter(listOf(), this, this)
-        binding.vendorsList.layoutManager = LinearLayoutManager(this)
-        binding.vendorsList.adapter = vendorListAdapter
-        binding.vendorsList.addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
+        setAdapter()
+        setListeners()
         fetchVendorsList()
+    }
+
+    private fun setAdapter() {
+        vendorListAdapter = VendorListAdapter(listOf(), this)
+        binding.vendorsList.layoutManager = LinearLayoutManager(this)
+        binding.vendorsList
+            .addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
+        binding.vendorsList.adapter = vendorListAdapter
+    }
+
+    private fun setListeners() {
+        binding.addVendor.setOnClickListener {
+            val addVendorIntent = Intent(this, AddVendorActivity::class.java)
+            startActivity(addVendorIntent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -67,8 +84,7 @@ class CustomerActivity : FragmentActivity(), VendorListAdapter.VendorSelectionLi
 
     override fun onVendorSelected(user: User) {
         Log.d(TAG, "onVendorSelected")
-        val intent = Intent(this, VendorInfoActivity::class.java)
-        startActivity(intent)
+
     }
 
     companion object {

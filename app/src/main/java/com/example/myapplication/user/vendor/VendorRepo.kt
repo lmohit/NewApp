@@ -1,29 +1,31 @@
-package com.example.myapplication.user.customer
+package com.example.myapplication.user.vendor
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.myapplication.Constants.Companion.REGISTERED_CUSTOMERS_DATABASE
 import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_DATABASE
 import com.example.myapplication.NewCorpApplication.Companion.FIREBASE_USER_DATABASE
 import com.example.myapplication.Utils
 import com.example.myapplication.user.User
 
-class CustomerRepo {
-    private val _vendorsList = MutableLiveData<List<User?>>()
-    val vendorsList: LiveData<List<User?>>
-        get() = _vendorsList
+class VendorRepo {
+    private val _customersList = MutableLiveData<List<User?>>()
+    val customersList: LiveData<List<User?>>
+        get() = _customersList
 
     init {
-        getVendorDetails()
+        Log.d(TAG, "Vendor Repo")
+        getCustomerDetails()
     }
 
-    private fun getVendorDetails() {
-        Log.d(TAG, "getVendorDetails")
+    private fun getCustomerDetails() {
+        Log.d(TAG, "getCustomerDetails")
 /*        // Testing Purpose
         FIREBASE_DATABASE
             .collection(FIREBASE_USER_DATABASE)
             .document(Utils.getUserEmail())
-            .update("registeredVendors", arrayListOf(User("priyam9501", "1234567", "987876765", "", "sample@gmail.com")))
+            .update(REGISTERED_CUSTOMERS_DATABASE, arrayListOf(User("priyam9501", "1234567", "987876765", "", "sample@gmail.com")))
 
         FIREBASE_DATABASE
             .collection(FIREBASE_USER_DATABASE)
@@ -39,7 +41,7 @@ class CustomerRepo {
                     val document = it.result
                     document?.let {
                         val user = it.toObject(User::class.java)
-                        _vendorsList.value = user?.registeredVendors
+                        _customersList.value = user?.registeredCustomers
                     }
                 }
             }

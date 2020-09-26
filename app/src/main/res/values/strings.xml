@@ -23,11 +23,15 @@
     <string name="improper_password">Please Enter proper password</string>
     <string name="logout">Logout</string>
     <string name="register_vendor">Register Vendor</string>
+    <string name="register_customer">Register Customer</string>
     <string name="vendor_name">Vendor Name</string>
     <string name="vendor_phone">Vendor Number</string>
-    <string name="vendor_item">Item:Milk</string>
+    <string name="customer_phone">Customer Number</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="vendor_item">Item Supplied</string>
     <string name="send_request">Send Request</string>
     <string name="vendors_list">Vendors List</string>
+    <string name="item_supplied">Item Supplied</string>
 
 
     <!-- Customer -->`
@@ -35,6 +39,16 @@
     <string name="user_selection">CHOOSE USER TYPE</string>
     <string name="no_vendors">No Vendors Registered</string>
     <string name="no_customers">No Customers Registered</string>
+    <string name="add_new_customer">Add New Customer</string>
+    <string name="add_new_vendor">Add New Vendor</string>
+    <string name="pending_vendor_requests">Pending Vendor Requests</string>
+    <string name="pending_customer_requests">Pending Customer Requests</string>
+    <string name="submit_request">Submit</string>
+    <string name="accept_request">Accept</string>
+    <string name="deny_request">Deny</string>
+    <string name="no_vendors_requests_pending">No Vendor Requests Pending</string>
+    <string name="vendor_added_successfully">Vendor Added Successfully</string>
+    <string name="error">Error Occurred</string>
 
     <!-- Vendor -->
     <string name="vendor_text">VENDOR</string>

@@ -35,7 +35,7 @@ class RegisterActivity : FragmentActivity() {
             isValid -> isValid?.let {
                 if (isValid) {
                     binding.validateCredentials.visibility = View.GONE
-                    insertInFirebase();
+                    insertInFirebase()
                 } else {
                     binding.validateCredentials.visibility = View.VISIBLE
                 }
@@ -66,9 +66,10 @@ class RegisterActivity : FragmentActivity() {
         binding.registerButton.setOnClickListener {
             registerViewModel.validateUserDetails(
                 binding.email.text.toString(),
+                binding.address.toString(),
+                binding.phoneNumber.text.toString(),
                 binding.username.text.toString(),
-                binding.password.text.toString(),
-                binding.phoneNumber.text.toString()
+                binding.password.text.toString()
             )
         }
 

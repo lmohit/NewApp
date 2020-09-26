@@ -1,11 +1,12 @@
 package com.example.myapplication.register
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import com.example.myapplication.R
 import com.example.myapplication.user.User
-import com.example.myapplication.user.UserCred
-import com.example.myapplication.user.UserType
 import java.util.regex.Pattern
 
 class RegisterViewModel : ViewModel() {
@@ -63,9 +64,10 @@ class RegisterViewModel : ViewModel() {
 
     fun validateUserDetails(
         email: String,
+        address: String,
+        phoneNumber: String,
         userName: String,
-        password: String,
-        phoneNumber: String
+        password: String
     ) {
         _isUserDetailsValid.value = null
         checkEmptyInformation(email, userName, password, phoneNumber)
@@ -84,12 +86,11 @@ class RegisterViewModel : ViewModel() {
         phoneNumber: String
     ): User {
         return User(
-            email,
+            userName,
+            password,
             phoneNumber,
             "",
-            UserType.NONE,
-            email,
-            UserCred(userName, password)
+            email
         )
     }
 

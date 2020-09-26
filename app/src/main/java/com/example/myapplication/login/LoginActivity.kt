@@ -53,7 +53,7 @@ class LoginActivity : FragmentActivity() {
             binding.validateCredentials.text = getString(resId)
         })
 
-        loginViewModel.isCredentialsEntered.observe(this, Observer {isEntered ->
+        loginViewModel.isCredentialsEntered.observe(this, Observer { isEntered ->
             if (isEntered) {
                 validateCredentials();
             } else {

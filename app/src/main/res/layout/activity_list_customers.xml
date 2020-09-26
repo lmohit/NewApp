@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
-            name="customerViewModel"
-            type="com.example.myapplication.user.customer.CustomerViewModel" />
+            name="vendorViewModel"
+            type="com.example.myapplication.user.vendor.VendorViewModel" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -26,15 +26,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/vendors"
+                    android:id="@+id/customers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/no_vendors"
+                    android:text="@string/no_customers"
                     android:textSize="17dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/vendorsList"
+                    android:id="@+id/customersList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp" />
@@ -42,12 +42,12 @@
         </ScrollView>
 
         <Button
-            android:id="@+id/addVendor"
+            android:id="@+id/addCustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="48dp"
-            android:text="@string/add_new_vendor" />
+            android:text="@string/add_new_customer" />
     </LinearLayout>
 </layout>

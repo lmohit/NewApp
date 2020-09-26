@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import com.example.myapplication.R
 import com.example.myapplication.Utils
 import com.example.myapplication.user.customer.CustomerActivity
+import com.example.myapplication.user.vendor.VendorActivity
 
 
 class UserSelectionActivity : AppCompatActivity() {
